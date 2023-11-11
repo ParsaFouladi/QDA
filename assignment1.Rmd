@@ -1,0 +1,58 @@
+---
+title: "First Assignment"
+author: "Parsa Fouladi"
+date: "2023-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Confidence Intervals
+
+### 1.1 In this assignment, our plan is to first explore the data and see which columns from the continuous variables look normally distributed.
+
+```{r}
+auto_df=read.csv('auto-mpg.csv')
+```
+
+```{r}
+head(auto_df)
+```
+
+```{r}
+summary(auto_df)
+```
+
+As you can see, the type of horsepower is written as 'character' which is quite odd. There should be a problematic value in the column that's causing this problem.
+
+When we look at the data, we can see some of the rows has '?' as horsepower value.
+
+```{r}
+auto_df$horsepower.numerical=ifelse(auto_df$horsepower=="?",NA,auto_df$horsepower)
+auto_df$horsepower.numerical<-as.numeric(auto_df$horsepower.numerical)
+```
+
+Now can plot the horsepower too.
+
+```{r}
+hist(auto_df$cylinders)
+hist(auto_df$displacement)
+hist(auto_df$weight)
+hist(auto_df$acceleration)
+hist(auto_df$model.year)
+hist(auto_df$horsepower.numerical)
+```
+
+As you can see, among all the existing columns, the acceleration looks more normally distributed.
+
+### 1.2 Now we will try to find the confidence interval (95%) for the mean of the acceleration column
+
+```{r}
+t.test(auto_df$acceleration)
+```
+
+As you can see, the confidence interval (95%) for the mean of the acceleration is between 15.3 and 15.84.
+
+## Including Plotsacceleration
