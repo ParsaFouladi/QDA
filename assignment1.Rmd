@@ -72,4 +72,4 @@ proportion
 prop.test(nrow(subset(auto_df,auto_df$model.year>=80)),nrow(auto_df),conf.level = 0.9)
 ```
 
-As you can see the confidence interval is between 0.19 and 0.261.
+As you can see the confidence interval is between 0.19 and 0.261. So this means that, we can say that we are 90% sure that the true proportion value is between 0..19 and 0.261.
