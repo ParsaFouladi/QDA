@@ -55,4 +55,21 @@ t.test(auto_df$acceleration)
 
 As you can see, the confidence interval (95%) for the mean of the acceleration is between 15.3 and 15.84.
 
-## Including Plotsacceleration
+## 2. CI for proportion of the cars
+
+In this section, we are supposed to calculate the proportion of cars that are from the 80s in a subset that includes the model years range from the 70s and the 80s. Then we will try to find a 90 % condence interval for the proportion of cars from the 80s.
+
+### 2.1 Proportion of the cars from 80s
+
+```{r}
+proportion=nrow(subset(auto_df,auto_df$model.year>=80))/nrow(auto_df)
+proportion
+```
+
+### 2.2 Compute a 90 % confidence interval for the proportion of cars from the 80s
+
+```{r}
+prop.test(nrow(subset(auto_df,auto_df$model.year>=80)),nrow(auto_df),conf.level = 0.9)
+```
+
+As you can see the confidence interval is between 0.19 and 0.261.
